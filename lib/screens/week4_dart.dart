@@ -40,8 +40,7 @@ class ContactItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
+    return Row(
         children: [
           Container(
             width: 80,
@@ -83,7 +82,6 @@ class ContactItem extends StatelessWidget {
             ],
           ),
         ],
-      ),
     );
   }
 }
