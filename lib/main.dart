@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'package:flutter_app/screens/week2.dart';
+import 'package:flutter_app/screens/week3.dart';
+import 'package:flutter_app/screens/week4_flutter.dart';
 
 // void main() {
 //   runApp(const MyApp());
 // }
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
-/*----------------------- WEEK 4 Flutter ---------------------*/
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -19,198 +21,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const TextSizeWidget(),
+      // home: const CongratulationWiget(), //week_2
+      // home: const BalloonsWidget(), //week_3
+      home: const TextSizeWidget(), //week_4_flutter
     );
   }
 }
-
-class TextSizeWidget extends StatefulWidget {
-  const TextSizeWidget({Key? key}) : super(key: key);
-
-  @override
-  State<TextSizeWidget> createState() => _TextSizeWidgetState();
-}
-
-class _TextSizeWidgetState extends State<TextSizeWidget> {
-  double initialFontSize = 18;
-
-  void increment() {
-    setState(() {
-      initialFontSize++;
-    });
-  }
-
-  void decrement() {
-    setState(() {
-      initialFontSize--;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Text Size Widget"),
-          centerTitle: true,
-        ),
-        body: Center(
-          child: Container(
-            width: 300,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    decrement();
-                  },
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 60),
-                  ),
-                  child: const Text('-'),
-                ),
-                TextField(
-                  controller: TextEditingController()..text = initialFontSize.toString(),
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly,
-                  ],
-                  decoration: const InputDecoration(
-                    labelText: "Размер шрифта",
-                  ),
-                  onChanged: (String font) {
-                    double newFont = double.parse(font);
-                    setState(() {
-                      initialFontSize = newFont;
-                    });
-                  },
-                ),
-                TextButton(
-                  onPressed: () {
-                    increment();
-                  },
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(fontSize: 60),
-                  ),
-                  child: const Text('+'),
-                ),
-
-                Text(
-                    "Винни-пух и пятачок отдыхали на веточке дуба. Пух сказал: ”Интересно, как долго мы ещё будем здесь торчать?” Пятачок ответил: ” Я думаю, ещё лет десять.",
-                    style: TextStyle(
-                        fontSize: initialFontSize,
-                        fontWeight: FontWeight.bold)),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/*----------------------- / WEEK 4 Flutter ---------------------*/
-
-
-/*-----------------------  WEEK 4 Dart ---------------------*/
-
-/*----------------------- / WEEK 4 Dart ---------------------*/
-
-/*----------------------- WEEK 3 ---------------------*/
-class BalloonsWidget extends StatelessWidget {
-  const BalloonsWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      // title: 'Flutter Demo',
-      // theme: ThemeData(
-      //   primarySwatch: Colors.deepPurple,
-      // ),
-      // home: const MyHomePage(title: 'Первое приложение'),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Balloons"),
-          centerTitle: true,
-        ),
-        body: Container(
-            width: double.infinity,
-            height: double.infinity,
-            padding: const EdgeInsets.all(30),
-            color: Colors.lightBlueAccent,
-            child: Stack(children: const <Widget>[
-              Align(
-                alignment: FractionalOffset(0.1, 0.2),
-                child: RedBalloon(),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: RedBalloon(),
-              ),
-              Align(
-                alignment: FractionalOffset(0.8, 0.2),
-                child: BlueBalloon(),
-              ),
-              Align(
-                alignment: FractionalOffset(0.1, 0.7),
-                child: BlueBalloon(),
-              ),
-              Align(
-                alignment: FractionalOffset(0.8, 0.8),
-                child: BlueBalloon(),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: BlueBalloon(),
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: BlueBalloon(),
-              ),
-              Center(
-                child: BlueBalloon(),
-              ),
-            ])),
-      ),
-    );
-  }
-}
-
-class BlueBalloon extends StatelessWidget {
-  const BlueBalloon({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.blueAccent,
-        border: Border.all(),
-        borderRadius: BorderRadius.circular(50.0),
-      ),
-    );
-  }
-}
-
-class RedBalloon extends StatelessWidget {
-  const RedBalloon({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      height: 100,
-      decoration: BoxDecoration(
-        color: Colors.redAccent,
-        border: Border.all(),
-        borderRadius: BorderRadius.circular(50.0),
-      ),
-    );
-  }
-}
-
-/*----------------------- / WEEK 3 ---------------------*/
 
 // class MyHomePage extends StatefulWidget {
 //   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -296,55 +112,3 @@ class RedBalloon extends StatelessWidget {
 //     );
 //   }
 // }
-
-/*----------------------- WEEK 2 ---------------------*/
-class CongratulationWiget extends StatelessWidget {
-  const CongratulationWiget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text("Congratulations!"),
-            centerTitle: true,
-            backgroundColor: Colors.indigoAccent,
-          ),
-          body: Stack(children: const <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 25, bottom: 40),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Text("Ослик, \nс Днем Рождения!",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'Roboto')),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 100),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Text(
-                  "Лучший подарок, по-моему, мед.\nКаждый осел это сразу поймет!\nДаже немножечко —\nЧайная ложечка! —\nЭто уже хорошо! —\nНу, а тем более — полный горшок!",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-            ),
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: Image(
-                  image: AssetImage('assets/images/donkey.png'),
-                  width: 300,
-                  height: 362,
-                )),
-          ])),
-    );
-  }
-} /*----------------------- / WEEK 2 ---------------------*/
