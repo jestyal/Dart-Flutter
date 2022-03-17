@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_app/screens/week2.dart';
 import 'package:flutter_app/screens/week3.dart';
-// import 'package:flutter_app/screens/week4_flutter.dart';
+import 'package:flutter_app/screens/week4_flutter.dart';
 import 'package:flutter_app/screens/week4_dart.dart';
+import 'package:flutter_app/screens/week5_flutter.dart';
 
-// void main() {
-//   runApp(const MyApp());
-// }
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -26,10 +25,16 @@ class MyApp extends StatelessWidget {
       // home: const CongratulationWiget(), //week_2
       // home: const BalloonsWidget(), //week_3
       // home: const TextSizeWidget(), //week_4_flutter
-      home: const ContactsPage(), //week_4_dart
+      // home: const ContactsPage(), //week_4_dart
+
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Форма'), centerTitle: true),
+        body: const QuestionnaireForm(), //week_5_flutter
+      ),
     );
   }
 }
+
 
 // class MyHomePage extends StatefulWidget {
 //   const MyHomePage({Key? key, required this.title}) : super(key: key);

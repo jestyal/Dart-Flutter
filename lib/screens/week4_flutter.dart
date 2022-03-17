@@ -24,6 +24,12 @@ class _TextSizeWidgetState extends State<TextSizeWidget> {
     });
   }
 
+  void changeFontSize(newFont) {
+    setState(() {
+      initialFontSize = newFont;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -58,9 +64,7 @@ class _TextSizeWidgetState extends State<TextSizeWidget> {
                   ),
                   onChanged: (String font) {
                     double newFont = double.parse(font);
-                    setState(() {
-                      initialFontSize = newFont;
-                    });
+                    changeFontSize(newFont);
                   },
                 ),
                 TextButton(
