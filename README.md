@@ -2,15 +2,20 @@
 
 A new Flutter project.
 
-## Getting Started
+## Lessons:
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+### lib/screens/week2
+- [x] Widgets (Stack, Text, Image, Padding, Align)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### lib/screens/week3
+- [x] Class, position widgets (Container (BoxDecoration), Row, Column)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### lib/screens/week4_dart
+- [x] Loops (for, do, while)
+
+### lib/screens/week4_flutter 
+- [x] Stateless and Statefull widgets (TextField, TextButton). Events (onChanged, onPressed)
+
+### lib/screens/week5_flutter 
+Forms (Form, TextFormField, RaisedButton, RadioListTile, CheckboxListTile). Functions
