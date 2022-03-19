@@ -29,39 +29,29 @@ class MyFormState extends State {
               children: <Widget>[
                 const Text(
                   'Кличка питомца:',
-                  style: TextStyle(fontSize: 10.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
                 TextFormField(validator: (value) {
-                  if (value!.isEmpty) return 'Пожалуйста введите кличку питомца';
+                  if (value!.isEmpty) return 'Введите кличку питомца';
                 }),
                 const SizedBox(height: 10.0),
 
                 const Text(
                   'Имя владельца:',
-                  style: TextStyle(fontSize: 10.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
                 TextFormField(validator: (value) {
-                  if (value!.isEmpty) return 'Пожалуйста введите свое имя';
+                  if (value!.isEmpty) return 'Введите свое имя';
                 }),
                 const SizedBox(height: 10.0),
 
                 const Text(
                   'Телефон:',
-                  // 'Контактный E-mail:',
-                  style: TextStyle(fontSize: 10.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
                 TextFormField(validator: (value) {
-                  if (value!.isEmpty) return 'Пожалуйста введите свой телефон';
-                  // if (!value.contains('@')) return 'Это не E-mail';
-                }),
-                const SizedBox(height: 10.0),
-
-                const Text(
-                  'Порода питомца:',
-                  style: TextStyle(fontSize: 10.0),
-                ),
-                TextFormField(validator: (value) {
-                  if (value!.isEmpty) return 'Пожалуйста введите породу питомца';
+                  if (value!.isEmpty) return 'Введите свой телефон';
+                  if (!value.contains('+')) return 'Введите телефон в формате +7000000000';
                 }),
                 const SizedBox(height: 10.0),
 
@@ -99,7 +89,7 @@ class MyFormState extends State {
 
                 const Text(
                   'Пол питомца:',
-                  style: TextStyle(fontSize: 10.0),
+                  style: TextStyle(fontSize: 14.0),
                 ),
                 RadioListTile(
                   title: const Text('Самец'),
@@ -123,21 +113,6 @@ class MyFormState extends State {
                 ),
                 const SizedBox(height: 10.0),
 
-
-
-                // CheckboxListTile(
-                //     value: _agreement,
-                //     title: Text('Я ознакомлен' +
-                //         (_gender == null
-                //             ? '(а)'
-                //             : _gender == GenderList.male
-                //                 ? ''
-                //                 : 'а') +
-                //         ' с документом "Согласие на обработку персональных данных" и даю согласие на обработку моих персональных данных в соответствии с требованиями "Федерального закона О персональных данных № 152-ФЗ".'),
-                //     onChanged: (bool? value) =>
-                //         setState(() => _agreement = value!)),
-
-
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -146,8 +121,8 @@ class MyFormState extends State {
 
                       if (_gender == null)
                         text = 'Выберите свой пол';
-                      // else if (_agreement == false)
-                      //   text = 'Необходимо принять условия соглашения';
+                      else if (_food_dry == false && _food_wet == false && _food_natural == false)
+                        text = 'Необходимо выбрать корм';
                       else {
                         text = 'Форма успешно заполнена';
                         color = Colors.green;
