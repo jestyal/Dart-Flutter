@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 enum GenderList { male, female }
 
-
 class QuestionnaireForm extends StatefulWidget {
   const QuestionnaireForm({Key? key}) : super(key: key);
 
