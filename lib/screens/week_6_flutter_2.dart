@@ -35,21 +35,23 @@ class ButterfliesList extends StatelessWidget {
             centerTitle: true,
           ),
           body: ListView.separated(
+              scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.all(8),
               itemCount: butterflies.length,
-              separatorBuilder: (BuildContext context, int index) => const Divider(),
+              separatorBuilder: (BuildContext context, int index) => const VerticalDivider(),
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                    title: Text(butterflies[index], style: const TextStyle(fontSize: 22)),
-                    leading: const Image(
-                      image: AssetImage('assets/images/butterfly.png'),
-                      width: 20,
-                      height: 20,
-                    ),
-                    // trailing: const Icon(Icons.phone),
-                    // subtitle: Text("Works in ${butterfliesDesc[index]}")
-                );
-              }
+                  return ListTile(
+                      title: Text(butterflies[index], style: const TextStyle(fontSize: 22)),
+                      leading: const Image(
+                        image: AssetImage('assets/images/butterfly.png'),
+                        width: 20,
+                        height: 20,
+                      ),
+                      focusColor: Colors.blue,
+                      // trailing: const Icon(Icons.phone),
+                      // subtitle: Text("Works in ${butterfliesDesc[index]}")
+                  );
+                }
           )),
     );
   }

@@ -1,87 +1,101 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class IdeasPage extends StatelessWidget {
+class IdeasPage extends StatefulWidget {
   const IdeasPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text("Contacts"),
-            centerTitle: true,
-          ),
-          body: Container(
-            height: double.infinity,
-            width: double.infinity,
-            color: Colors.white,
-            // alignment: Alignment.center,
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    for (int i = 0; i < 5; i++) const ContactItem(),
-                  ],
-                ),
-              ],
-            ),
-          )),
-    );
-  }
+  State<IdeasPage> createState() => _IdeasPageState();
 }
 
-class ContactItem extends StatelessWidget {
-  const ContactItem({Key? key}) : super(key: key);
+class _IdeasPageState extends State<IdeasPage> {
+  final myController = TextEditingController();
+
+  final Set<String> noteList = {};
+  String newNote = "";
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: 80,
-          height: 80,
-          margin: const EdgeInsets.only(right: 20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(
-              color: Colors.grey,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.circular(50.0),
-            image: const DecorationImage(
-              image: AssetImage('assets/images/avatars/ava1.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Notes"),
+          centerTitle: true,
         ),
-        Column(
-          children: const [
+        body: Column(
+          children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(bottom: 10),
-              child: Text(
-                "Имя Фамилия",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+              padding: const EdgeInsets.all(12),
+              child: TextField(
+                  controller: myController,
+                  decoration: const InputDecoration(
+                    labelText: "Enter your note",
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (String str) {
+                    setState(() {
+                      newNote = str;
+                    });
+                  }),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                if (noteList.contains(newNote)) {
+                  final snackBar = SnackBar(
+                    content: const Text("Note already exists"),
+                    backgroundColor: Colors.redAccent,
+                    action: SnackBarAction(
+                      label: 'Close',
+                      onPressed: () {
+                        // Some code to undo the change.
+                      },
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else {
+                  setState(() {
+                    noteList.add(newNote);
+                    myController.clear();
+                  });
+                }
+              },
+              child: const Text('Enabled'),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(12),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Notes:",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 10),
-              child: Text("Teл: +7 900 000 00 00"),
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 10),
-              child: Text("14.01.1993"),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: noteList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      tileColor: Colors.lightBlueAccent,
+                      title: Text(
+                        noteList.elementAt(index),
+                        style: const TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    );
+                  }),
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 }
