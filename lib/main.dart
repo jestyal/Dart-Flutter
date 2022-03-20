@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
       //   appBar: AppBar(title: const Text('Форма'), centerTitle: true),
       //   body: const QuestionnaireForm(), //week_5_flutter
       // ),
-      home: const IdeasPage(), //week_6_flutter_1
-      // home: const ButterfliesList(),
+      // home: const IdeasPage(), //week_6_flutter_1
+      home: const ButterfliesList(),
     );
   }
 }

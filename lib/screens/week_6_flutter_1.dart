@@ -10,7 +10,6 @@ class IdeasPage extends StatefulWidget {
 
 class _IdeasPageState extends State<IdeasPage> {
   final myController = TextEditingController();
-
   final Set<String> noteList = {};
   String newNote = "";
 
@@ -49,9 +48,7 @@ class _IdeasPageState extends State<IdeasPage> {
                     backgroundColor: Colors.redAccent,
                     action: SnackBarAction(
                       label: 'Close',
-                      onPressed: () {
-                        // Some code to undo the change.
-                      },
+                      onPressed: () {},
                     ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -62,7 +59,7 @@ class _IdeasPageState extends State<IdeasPage> {
                   });
                 }
               },
-              child: const Text('Enabled'),
+              child: const Text('Added'),
             ),
             const Padding(
               padding: EdgeInsets.all(12),
