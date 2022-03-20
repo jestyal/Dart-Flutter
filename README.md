@@ -18,7 +18,7 @@ A new Flutter project.
 - [x] Stateless and Statefull widgets (TextField, TextButton). Events (onChanged, onPressed)
 
 ### lib/screens/week5_flutter 
-- [x] Forms (Form, TextFormField, RaisedButton, RadioListTile, CheckboxListTile, ElevatedButton). Functions
+- [x] Forms (Form, TextFormField, RaisedButton, RadioListTile, CheckboxListTile, ElevatedButton, SnackBar). Functions
 
 ### lib/screens/week_6_flutter_1
 ### lib/screens/week_6_flutter_2
