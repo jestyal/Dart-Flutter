@@ -8,6 +8,8 @@ import 'package:flutter_app/screens/week4_dart.dart';
 import 'package:flutter_app/screens/week5_flutter.dart';
 import 'package:flutter_app/screens/week_6_flutter_1.dart';
 import 'package:flutter_app/screens/week_6_flutter_2.dart';
+import 'package:flutter_app/screens/components/homePage.dart'; //weather
+import 'package:flutter_app/screens/week_7_flutter_2.dart';
 
 void main() => runApp(const MyApp());
 
@@ -31,7 +33,8 @@ class MyApp extends StatelessWidget {
       //   body: const QuestionnaireForm(), //week_5_flutter
       // ),
       // home: const IdeasPage(), //week_6_flutter_1
-      home: const ButterfliesList(),
+      // home: const ButterfliesList(), //week_6_flutter_2
+      home: const HomePage(), //week_7_flutter_1
     );
   }
 }
