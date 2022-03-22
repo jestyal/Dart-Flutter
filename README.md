@@ -24,6 +24,8 @@ A new Flutter project.
 ### lib/screens/week_6_flutter_2
 - [x] List (ListView, Expanded)
 
-### lib/screens/week_7_flutter_1
+### lib/screens/components/homePage
+- [x] Weater App (fetch)
+
 ### lib/screens/week_7_flutter_2
 - [x] API, JSON, GET, POST, http, FutureBuilder
