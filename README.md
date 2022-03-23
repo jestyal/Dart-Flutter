@@ -27,5 +27,5 @@ A new Flutter project.
 ### lib/screens/components/homePage
 - [x] Weater App (fetch)
 
-### lib/screens/week_7_flutter_2
+### lib/screens/components/giphy/giphyPage
 - [x] API, JSON, GET, POST, http, FutureBuilder
