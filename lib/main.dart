@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/components/catForm/catForm.dart';
+import 'package:flutter_app/screens/components/catForm/formSuccess.dart';
 
 import 'package:flutter_app/screens/week2.dart';
 import 'package:flutter_app/screens/week3.dart';
@@ -36,7 +38,14 @@ class MyApp extends StatelessWidget {
       // home: const IdeasPage(), //week_6_flutter_1
       // home: const ButterfliesList(), //week_6_flutter_2
       // home: const HomePage(), //week_7_flutter_1
-      home: const GiphyPage(), //week_7_flutter_2
+      // home: const GiphyPage(), //week_7_flutter_2
+
+      //week_8_flutter_1
+      routes: {
+        '/': (context) => const CatForm(),
+        FormSuccess().routeName: (context) => FormSuccess(),
+      },
+
     );
   }
 }
