@@ -29,3 +29,8 @@ A new Flutter project.
 
 ### lib/screens/components/giphy/giphyPage
 - [x] API, JSON, GET, POST, http, FutureBuilder
+
+
+<!-- ### 8
+dart Class
+flutter Navigation -->
