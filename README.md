@@ -30,4 +30,8 @@ A new Flutter project.
 - [x] API, JSON, GET, POST, http, FutureBuilder
 
 ### lib/screens/components/catForm/catForm.dart
-- [x] Navigation
+- [x] Navigator 1.0
+
+<!--
+- [x] Navigator 2.0
+-->
