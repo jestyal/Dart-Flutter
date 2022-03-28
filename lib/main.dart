@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/components/catForm/catForm.dart';
 import 'package:flutter_app/screens/components/catForm/formSuccess.dart';
+import 'package:flutter_app/screens/components/places/placeItem.dart';
+import 'package:flutter_app/screens/components/places/placeList.dart';
 
 import 'package:flutter_app/screens/week2.dart';
 import 'package:flutter_app/screens/week3.dart';
@@ -16,8 +18,19 @@ import 'package:flutter_app/screens/components/giphy/giphyPage.dart'; //giphy
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  // week_8_flutter_2
+  String? selectedPlace;
+  String? selectedPlaceInfo;
+  String? selectedPlaceImg;
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +54,47 @@ class MyApp extends StatelessWidget {
       // home: const GiphyPage(), //week_7_flutter_2
 
       //week_8_flutter_1
-      routes: {
-        '/': (context) => const CatForm(),
-        FormSuccess().routeName: (context) => FormSuccess(),
-      },
+      // routes: {
+      //   '/': (context) => const CatForm(),
+      //   FormSuccess().routeName: (context) => FormSuccess(),
+      // },
+
+      //Navigator 2.0 week_8_flutter_2
+      home: Navigator(
+        pages: [
+          MaterialPage(child: PlaceList(getSelectedPlace, getSelectedPlaceInfo, getSelectedPlaceImg)),
+
+          if (selectedPlace != null)
+            MaterialPage(child: PlaceItem(selectedPlace!, selectedPlaceInfo!, selectedPlaceImg!))
+        ],
+        onPopPage: (route, result) {
+          return route.didPop(result);
+        },
+      ),
 
     );
   }
+
+  // week_8_flutter_2
+  void getSelectedPlace(place) {
+    setState(() {
+      selectedPlace = place;
+    });
+  }
+
+  void getSelectedPlaceInfo(placeInfo) {
+    setState(() {
+      selectedPlaceInfo = placeInfo;
+
+    });
+  }
+
+  void getSelectedPlaceImg(placeImg) {
+    setState(() {
+      selectedPlaceImg = placeImg;
+    });
+  }
+
 }
 
 // class MyHomePage extends StatefulWidget {
