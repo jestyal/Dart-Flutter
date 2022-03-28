@@ -29,9 +29,8 @@ A new Flutter project.
 ### lib/screens/components/giphy/giphyPage
 - [x] API, JSON, GET, POST, http, FutureBuilder
 
-### lib/screens/components/catForm/catForm.dart
+### lib/screens/components/catForm/
 - [x] Navigator 1.0
 
-<!--
+### lib/screens/components/places/
 - [x] Navigator 2.0
--->
