@@ -85,9 +85,7 @@ class _ButterfliesState extends State<Butterflies> {
               controller: _controller,
               decoration: InputDecoration(
                 hintText: "Enter butterfly name",
-                // for the Help list
                 suffixIcon: PopupMenuButton(
-                  //при выборе бабочки
                   onSelected: (String value) {
                     setState(() {
                       _controller.text = value;
@@ -97,9 +95,7 @@ class _ButterfliesState extends State<Butterflies> {
                   },
                   icon: const Icon(Icons.arrow_drop_down),
                   itemBuilder: (BuildContext context) {
-                    //get Help list
                     var _items = Butterfly.getHelpList();
-                    //список элементов для PopupMenuButton
                     return _items.map((String value) {
                       return PopupMenuItem(
                         value: value,
