@@ -13,7 +13,8 @@ import 'package:flutter_app/screens/week5_flutter.dart';
 import 'package:flutter_app/screens/week_6_flutter_1.dart';
 import 'package:flutter_app/screens/week_6_flutter_2.dart';
 // import 'package:flutter_app/screens/components/homePage.dart'; //weather
-import 'package:flutter_app/screens/components/giphy/giphyPage.dart'; //giphy
+import 'package:flutter_app/screens/components/giphy/giphyPage.dart';
+import 'package:flutter_app/screens/week_8_dart.dart'; //giphy
 
 
 void main() => runApp(const MyApp());
@@ -56,20 +57,26 @@ class _MyAppState extends State<MyApp> {
       //week_8_flutter_1
       // routes: {
       //   '/': (context) => const CatForm(),
-      //   FormSuccess().routeName: (context) => FormSuccess(),
+      //   const FormSuccess().routeName: (context) => const FormSuccess(),
       // },
 
       //Navigator 2.0 week_8_flutter_2
-      home: Navigator(
-        pages: [
-          MaterialPage(child: PlaceList(getSelectedPlace, getSelectedPlaceInfo, getSelectedPlaceImg)),
+      // home: Navigator(
+      //   pages: [
+      //     MaterialPage(child: PlaceList(getSelectedPlace, getSelectedPlaceInfo, getSelectedPlaceImg)),
+      //
+      //     if (selectedPlace != null)
+      //       MaterialPage(child: PlaceItem(selectedPlace!, selectedPlaceInfo!, selectedPlaceImg!))
+      //   ],
+      //   onPopPage: (route, result) {
+      //     return route.didPop(result);
+      //   },
+      // ),
 
-          if (selectedPlace != null)
-            MaterialPage(child: PlaceItem(selectedPlace!, selectedPlaceInfo!, selectedPlaceImg!))
-        ],
-        onPopPage: (route, result) {
-          return route.didPop(result);
-        },
+        //week_8_dart
+      home: Scaffold(
+        appBar: AppBar(title: const Text("Butterflies"), centerTitle: true),
+        body: const Butterflies(),
       ),
 
     );
