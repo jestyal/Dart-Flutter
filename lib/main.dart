@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
       ),
       // home: const CongratulationWiget(), //week_2
       // home: const BalloonsWidget(), //week_3
-      // home: const TextSizeWidget(), //week_4_flutter
+      home: const TextSizeWidget(), //week_4_flutter
       // home: const ContactsPage(), //week_4_dart
       // home: Scaffold(
       //   appBar: AppBar(title: const Text('Форма'), centerTitle: true),
@@ -73,11 +73,11 @@ class _MyAppState extends State<MyApp> {
       //   },
       // ),
 
-        //week_8_dart
-      home: Scaffold(
-        appBar: AppBar(title: const Text("Butterflies"), centerTitle: true),
-        body: const Butterflies(),
-      ),
+      //week_8_dart
+      // home: Scaffold(
+      //   appBar: AppBar(title: const Text("Butterflies"), centerTitle: true),
+      //   body: const Butterflies(),
+      // ),
 
     );
   }

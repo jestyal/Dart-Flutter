@@ -62,7 +62,7 @@ class _TextSizeWidgetState extends State<TextSizeWidget> {
                   decoration: const InputDecoration(
                     labelText: "Размер шрифта",
                   ),
-                  onChanged: (String font) {
+                  onSubmitted: (String font) {
                     double newFont = double.parse(font);
                     changeFontSize(newFont);
                   },
