@@ -34,3 +34,6 @@ A new Flutter project.
 
 ### lib/screens/components/places/
 - [x] Navigator 2.0
+
+### /lib/screens/week_8_dart
+- [x] Class (PopupMenuButton)
