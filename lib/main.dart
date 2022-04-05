@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_app/screens/components/catForm/catForm.dart';
 import 'package:flutter_app/screens/components/catForm/formSuccess.dart';
 import 'package:flutter_app/screens/components/places/placeItem.dart';
@@ -14,7 +15,8 @@ import 'package:flutter_app/screens/week_6_flutter_1.dart';
 import 'package:flutter_app/screens/week_6_flutter_2.dart';
 // import 'package:flutter_app/screens/components/homePage.dart'; //weather
 import 'package:flutter_app/screens/components/giphy/giphyPage.dart';
-import 'package:flutter_app/screens/week_8_dart.dart'; //giphy
+import 'package:flutter_app/screens/week_8_dart.dart';
+import 'package:flutter_app/screens/week_9_dart.dart'; //giphy
 
 
 void main() => runApp(const MyApp());
@@ -43,7 +45,7 @@ class _MyAppState extends State<MyApp> {
       ),
       // home: const CongratulationWiget(), //week_2
       // home: const BalloonsWidget(), //week_3
-      home: const TextSizeWidget(), //week_4_flutter
+      // home: const TextSizeWidget(), //week_4_flutter
       // home: const ContactsPage(), //week_4_dart
       // home: Scaffold(
       //   appBar: AppBar(title: const Text('Форма'), centerTitle: true),
@@ -78,6 +80,9 @@ class _MyAppState extends State<MyApp> {
       //   appBar: AppBar(title: const Text("Butterflies"), centerTitle: true),
       //   body: const Butterflies(),
       // ),
+
+      //week_9_dart
+      home: const DatePage(title: 'Intl Demo Home Page'),
 
     );
   }
