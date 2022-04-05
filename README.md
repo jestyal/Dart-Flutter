@@ -32,7 +32,7 @@ A new Flutter project.
 ### /lib/screens/components/catForm/
 - [x] Navigator 1.0
 
-### lib/screens/components/places/
+### /lib/screens/components/places/
 - [x] Navigator 2.0
 
 ### /lib/screens/week_8_dart
