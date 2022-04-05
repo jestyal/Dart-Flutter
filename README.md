@@ -37,3 +37,6 @@ A new Flutter project.
 
 ### /lib/screens/week_8_dart
 - [x] Class (PopupMenuButton)
+
+### /lib/screens/week_9_dart
+- [x] Package (intl, intl/date_symbol_data_local)
