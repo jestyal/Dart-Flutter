@@ -40,3 +40,6 @@ A new Flutter project.
 
 ### /lib/screens/week_9_dart
 - [x] Package (intl, intl/date_symbol_data_local)
+
+### /lib/screens/week_9_flutter
+- [x] Switch, InheritedWidget
