@@ -16,7 +16,8 @@ import 'package:flutter_app/screens/week_6_flutter_2.dart';
 // import 'package:flutter_app/screens/components/homePage.dart'; //weather
 import 'package:flutter_app/screens/components/giphy/giphyPage.dart';
 import 'package:flutter_app/screens/week_8_dart.dart';
-import 'package:flutter_app/screens/week_9_dart.dart'; //giphy
+import 'package:flutter_app/screens/week_9_dart.dart';
+import 'package:flutter_app/screens/week_9_flutter.dart'; //giphy
 
 
 void main() => runApp(const MyApp());
@@ -82,7 +83,9 @@ class _MyAppState extends State<MyApp> {
       // ),
 
       //week_9_dart
-      home: const DatePage(title: 'Intl Demo Home Page'),
+      // home: const DatePage(title: 'Intl Demo Home Page'),
+      //week_9_flutter
+      home: const SwitchPage(),
 
     );
   }

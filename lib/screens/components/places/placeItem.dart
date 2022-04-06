@@ -57,26 +57,6 @@ class PlaceItem extends StatelessWidget {
             },
             child: Text('Go back'),
           ),
-
-          // Container(
-          //   width: 80,
-          //   height: 80,
-          //   margin: const EdgeInsets.only(right: 20),
-          //   decoration: BoxDecoration(
-          //     color: Colors.white,
-          //     border: Border.all(
-          //       color: Colors.grey,
-          //       width: 1,
-          //     ),
-          //     borderRadius: BorderRadius.circular(50.0),
-          //     image: const DecorationImage(
-          //       image: AssetImage('assets/images/places/place1.jpg'),
-          //       fit: BoxFit.cover,
-          //     ),
-          //   ),
-          // ),
-
-
         ],
       ),
     );
