@@ -42,4 +42,4 @@ A new Flutter project.
 - [x] Package (intl, intl/date_symbol_data_local)
 
 ### /lib/screens/week_9_flutter
-- [x] Switch, InheritedWidget
+- [x] Switch, InheritedWidget, FittedBox, Positioned
