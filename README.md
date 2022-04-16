@@ -44,6 +44,6 @@ A new Flutter project.
 ### /lib/screens/week_9_flutter
 - [x] Switch, InheritedWidget, FittedBox, Positioned
 
-<!-- ### /lib/screens/week_17_google-maps
-- [x] Maps (google_maps_flutter)
--->
+### /lib/screens/week_17
+- [x] Maps (google_maps_flutter: Markers), FloatingActionButton
+
