@@ -23,6 +23,7 @@ class _MapPageState extends State<MapPage> {
     _mapController = mapController;
   }
 
+  //разрешение у пользователя
   _checkLocationPermission() async {
     bool locationServiceEnabled = await location.serviceEnabled();
     if (!locationServiceEnabled) {
@@ -45,7 +46,30 @@ class _MapPageState extends State<MapPage> {
         LatLng(locationData.latitude!, locationData.longitude!)));
   }
 
-  Future<void> _addMarker(LatLng position) async {
+  Future<LatLng> _getCenter() async {
+    final GoogleMapController controller = await _controller.future;
+    LatLngBounds visibleRegion = await controller.getVisibleRegion();
+    LatLng centerLatLng = LatLng(
+      (visibleRegion.northeast.latitude + visibleRegion.southwest.latitude) / 2,
+      (visibleRegion.northeast.longitude + visibleRegion.southwest.longitude) /
+          2,
+    );
+
+    return centerLatLng;
+  }
+
+  Future<LatLng> _getLocation() async {
+    LocationData locationData = await location.getLocation();
+    return LatLng(locationData.latitude!, locationData.longitude!);
+  }
+
+  Future<void> _goToCurrent(LatLng latLng) async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(target: latLng, zoom: 14)));
+  }
+
+  Future<void> _addMarker() async {
     final startIcon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(size: Size(75, 75)),
         'assets/icons/start_map_pin.png');
@@ -53,30 +77,31 @@ class _MapPageState extends State<MapPage> {
         const ImageConfiguration(size: Size(75, 75)),
         'assets/icons/finish_map_pin.png');
 
-    if (_markers.isEmpty) {
-      _markers.add(Marker(
-          markerId: const MarkerId("start"),
-          infoWindow: const InfoWindow(title: "Start"),
-          // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-          icon: startIcon,
-          position: position));
-    } else {
-      _markers.add(Marker(
-          markerId: const MarkerId("finish"),
-          infoWindow: const InfoWindow(title: "Finish"),
-          // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-          icon: finishIcon,
-          position: position));
+    LatLng _currentPosition = await _getLocation();
 
-      _polyline
-          .removeWhere((element) => element.polylineId.value == "polyline");
-      _polyline.add(Polyline(
-        polylineId: const PolylineId("polyline"),
-        color: Colors.indigoAccent,
-        width: 4,
-        points: _markers.map((marker) => marker.position).toList(),
-      ));
-    }
+    _markers.add(Marker(
+        markerId: const MarkerId("start"),
+        infoWindow: const InfoWindow(title: "Start"),
+        // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+        icon: startIcon,
+        position: _currentPosition));
+
+    LatLng _currentCenter = await _getCenter();
+
+    _markers.add(Marker(
+        markerId: const MarkerId("finish"),
+        infoWindow: const InfoWindow(title: "Finish"),
+        // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+        icon: finishIcon,
+        position: _currentCenter));
+
+    _polyline.add(Polyline(
+      polylineId: const PolylineId("polyline"),
+      color: Colors.indigoAccent,
+      width: 4,
+      points: _markers.map((marker) => marker.position).toList(),
+    ));
+
     setState(() {});
   }
 
@@ -92,11 +117,6 @@ class _MapPageState extends State<MapPage> {
     super.dispose();
   }
 
-  static const CameraPosition _ekb = CameraPosition(
-    target: LatLng(56.840222, 60.620272),
-    zoom: 14.4746,
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,14 +125,16 @@ class _MapPageState extends State<MapPage> {
       ),
       body: Stack(children: [
         GoogleMap(
-          initialCameraPosition: _ekb,
-          // initialCameraPosition: CameraPosition(target: currentLatLng),
+          initialCameraPosition: const CameraPosition(
+            target: LatLng(56.840222, 60.620272),
+            zoom: 14,
+          ),
           myLocationEnabled: true,
           myLocationButtonEnabled: true,
           onMapCreated: _onMapCreated,
           markers: _markers,
           polylines: _polyline,
-          onTap: _addMarker,
+          // onTap: _addMarker,
         ),
         Center(
           child: Image.asset('assets/icons/map_pin.png', width: 80),
@@ -128,8 +150,9 @@ class _MapPageState extends State<MapPage> {
                     _markers.clear();
                     _polyline.clear();
                   });
+                  _addMarker();
                 },
-                label: const Text('Reset'),
+                label: const Text('Проложить'),
                 // icon: const Icon(Icons.double_arrow_rounded),
                 backgroundColor: Colors.indigoAccent,
               )),
@@ -141,8 +164,11 @@ class _MapPageState extends State<MapPage> {
                     _markers.clear();
                     _polyline.clear();
                   });
+                  _getLocation().then((latLng) {
+                    _goToCurrent(latLng);
+                  });
                 },
-                label: const Text('Continue'),
+                label: const Text('Сброс'),
                 backgroundColor: Colors.indigoAccent,
               ))
         ],
