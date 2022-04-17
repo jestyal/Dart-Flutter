@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -101,6 +102,25 @@ class _MapPageState extends State<MapPage> {
       width: 4,
       points: _markers.map((marker) => marker.position).toList(),
     ));
+
+
+    //центр между двумя маркерами
+    var lngs = _markers.map<double>((m) => m.position.longitude).toList();
+    var lats = _markers.map<double>((m) => m.position.latitude).toList();
+
+    double topMost = lngs.reduce(max);
+    double leftMost = lats.reduce(min);
+    double rightMost = lats.reduce(max);
+    double bottomMost = lngs.reduce(min);
+
+    LatLngBounds bounds = LatLngBounds(
+      northeast: LatLng(rightMost, topMost),
+      southwest: LatLng(leftMost, bottomMost),
+    );
+
+    await _mapController.animateCamera(
+      CameraUpdate.newLatLngBounds(bounds, 100),
+    );
 
     setState(() {});
   }
