@@ -5,6 +5,7 @@ import 'package:flutter_app/screens/components/catForm/catForm.dart';
 import 'package:flutter_app/screens/components/catForm/formSuccess.dart';
 import 'package:flutter_app/screens/components/places/placeItem.dart';
 import 'package:flutter_app/screens/components/places/placeList.dart';
+import 'package:flutter_app/screens/components/registrationForm/registrationForm.dart';
 
 import 'package:flutter_app/screens/week2.dart';
 import 'package:flutter_app/screens/week3.dart';
@@ -89,7 +90,10 @@ class _MyAppState extends State<MyApp> {
       // home: const SwitchPage(),
 
       //week_17
-      home: MapPage(),
+      // home: const MapPage(),
+
+      // week 13
+      home: const RegistrationPage(),
 
     );
   }
@@ -104,7 +108,6 @@ class _MyAppState extends State<MyApp> {
   void getSelectedPlaceInfo(placeInfo) {
     setState(() {
       selectedPlaceInfo = placeInfo;
-
     });
   }
 
