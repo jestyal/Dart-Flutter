@@ -5,7 +5,10 @@ import 'package:flutter_app/screens/components/catForm/catForm.dart';
 import 'package:flutter_app/screens/components/catForm/formSuccess.dart';
 import 'package:flutter_app/screens/components/places/placeItem.dart';
 import 'package:flutter_app/screens/components/places/placeList.dart';
+import 'package:flutter_app/screens/components/registrationForm/loginForm.dart';
 import 'package:flutter_app/screens/components/registrationForm/registrationForm.dart';
+import 'package:flutter_app/screens/components/registrationForm/registrationPage.dart';
+import 'package:flutter_app/screens/components/registrationForm/registrationSuccess.dart';
 
 import 'package:flutter_app/screens/week2.dart';
 import 'package:flutter_app/screens/week3.dart';
@@ -93,7 +96,12 @@ class _MyAppState extends State<MyApp> {
       // home: const MapPage(),
 
       // week 13
-      home: const RegistrationPage(),
+      routes: {
+        '/': (context) => const RegistrationPage(),
+        '/login-form': (context) => const LoginForm(),
+        '/registration-form': (context) => const RegistrationForm(),
+        '/registration-success': (context) => const RegistrationSuccess(),
+      },
 
     );
   }

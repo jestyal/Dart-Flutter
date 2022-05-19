@@ -1,31 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class RegistrationForm extends StatefulWidget {
-  const RegistrationForm({Key? key}) : super(key: key);
+class LoginForm extends StatefulWidget {
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
-  _RegistrationFormState createState() => _RegistrationFormState();
+  _LoginFormState createState() => _LoginFormState();
 }
 
-class _RegistrationFormState extends State<RegistrationForm> {
-  final routeName = "/registration-form";
+class _LoginFormState extends State<LoginForm> {
+  final routeName = "/login-form";
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
   bool isNewUser = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Registration"),
+        title: const Text("Login"),
         centerTitle: true,
-        backgroundColor: const Color(0xFFda5c36),
+        backgroundColor: const Color(0xFF00beac),
       ),
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xFFf5683d),
+      backgroundColor: const Color(0xFF00ceb9),
       body: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -47,7 +46,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             const Padding(
               padding: EdgeInsets.only(bottom: 20),
               child: Text(
-                "Registration",
+                "Login",
                 style: TextStyle(fontSize: 30),
               ),
             ),
@@ -71,22 +70,29 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: TextField(
-                controller: _confirmPasswordController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Confirm Password',
+            Row(
+              children: [
+                Checkbox(
+                  value: isNewUser,
+                  onChanged: (newValue) {
+                    setState(() {
+                      isNewUser = newValue!;
+                    });
+                  },
                 ),
-              ),
+                const Text("Remember password"),
+              ],
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text('Forgot Password'),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: ElevatedButton(
-                child: const Text('Sing up'),
+                child: const Text('Login'),
                 style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFFda5c36),
+                  primary: const Color(0xFF00beac),
                 ),
                 onPressed: () {
                   // print(_nameController.text);
@@ -98,6 +104,25 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   );
                 },
               ),
+            ),
+
+            Row(
+              children: [
+                const Text('Does not have account?'),
+                TextButton(
+                  child: const Text(
+                    'Sign up',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/registration-form',
+                    );
+                  },
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.center,
             ),
           ],
         ),
