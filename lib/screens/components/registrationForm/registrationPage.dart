@@ -41,7 +41,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             const Padding(
               padding: EdgeInsets.only(bottom: 20),
               child: Text(
-                "Welcome, user",
+                "Welcome",
                 style: TextStyle(fontSize: 30),
               ),
             ),

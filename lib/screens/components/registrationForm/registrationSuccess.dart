@@ -1,10 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/components/registrationForm/userPreferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class RegistrationSuccess extends StatelessWidget {
+class RegistrationSuccess extends StatefulWidget {
   const RegistrationSuccess({Key? key}) : super(key: key);
 
+  @override
+  _RegistrationSuccessState createState() => _RegistrationSuccessState();
+}
+
+class _RegistrationSuccessState extends State<RegistrationSuccess> {
   final routeName = "/registration-success";
+  String userName = "";
+  String userPass = "";
+
+  @override
+  void initState() {
+    super.initState();
+
+    userName = UserPreferences().getUsername() ?? '';
+    userPass = UserPreferences().getPassword() ?? '';
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +51,44 @@ class RegistrationSuccess extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 40, horizontal: 30),
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
         child: Column(
-          children: const [
+          children: [
             Padding(
-              padding: EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: 20),
               child: Text(
-                "Hello, USER!",
-                style: TextStyle(fontSize: 30),
+                "Hello $userName!",
+                style: const TextStyle(fontSize: 30),
               ),
             ),
-            Align(
+            const Align(
                 alignment: Alignment.center,
                 child: Image(
                   image: AssetImage('assets/images/cat.jpg'),
                 )
             ),
+
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.logout),
+                label:  const Text('Logout'),
+                style: ElevatedButton.styleFrom(
+                  primary: const Color(0xFF00beac),
+                ),
+                onPressed: () async {
+                  await UserPreferences().deleteUsername();
+                  await UserPreferences().deletePassword();
+                  setState(() {
+                    userName = '';
+                    userPass = '';
+                  });
+                  Navigator.pushNamed(
+                    context,
+                    "/",
+                  );
+                },
+              ),
+            ),
+
           ],
         ),
       ),

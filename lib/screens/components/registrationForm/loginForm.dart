@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/components/registrationForm/userPreferences.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -10,10 +13,17 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final routeName = "/login-form";
+  final formKey = GlobalKey<FormState>();
+  String name = "";
+  String password = "";
 
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  bool isNewUser = false;
+  @override
+  void initState() {
+    super.initState();
+
+    name = UserPreferences().getUsername() ?? '';
+    password = UserPreferences().getPassword() ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,77 +62,69 @@ class _LoginFormState extends State<LoginForm> {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
-              child: TextField(
-                controller: _nameController,
+              child: TextFormField(
+                initialValue: name,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Username',
+                  labelText: 'Username *',
+                  suffixIcon: Icon(Icons.person),
                 ),
+                onChanged: (name) => setState(() => this.name = name),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
-              child: TextField(
-                controller: _passwordController,
+              child: TextFormField(
+                initialValue: password,
+                obscureText: true,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Password',
+                  labelText: 'Password *',
+                  suffixIcon: Icon(Icons.key),
                 ),
+                onChanged: (password) => setState(() => this.password = password),
               ),
             ),
-            Row(
-              children: [
-                Checkbox(
-                  value: isNewUser,
-                  onChanged: (newValue) {
-                    setState(() {
-                      isNewUser = newValue!;
-                    });
-                  },
-                ),
-                const Text("Remember password"),
-              ],
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text('Forgot Password'),
-            ),
+            // Row(
+            //   children: [
+            //     Checkbox(
+            //       value: isNewUser,
+            //       onChanged: (newValue) {
+            //         setState(() {
+            //           isNewUser = newValue!;
+            //         });
+            //       },
+            //     ),
+            //     const Text("Remember password"),
+            //   ],
+            // ),
+            // TextButton(
+            //   onPressed: () {},
+            //   child: const Text('Forgot Password'),
+            // ),
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: ElevatedButton(
-                child: const Text('Login'),
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.login),
+                label:  const Text('Login'),
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xFF00beac),
                 ),
-                onPressed: () {
-                  // print(_nameController.text);
-                  // print(_passwordController.text);
-
-                  Navigator.pushNamed(
-                    context,
-                    "/registration-success",
-                  );
-                },
-              ),
-            ),
-
-            Row(
-              children: [
-                const Text('Does not have account?'),
-                TextButton(
-                  child: const Text(
-                    'Sign up',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
+                onPressed: () async {
+                  await UserPreferences().setUsername(name);
+                  await UserPreferences().setPassword(password);
+                  if(name.isNotEmpty && password.isNotEmpty) {
                     Navigator.pushNamed(
                       context,
-                      '/registration-form',
+                      "/registration-success",
                     );
-                  },
-                )
-              ],
-              mainAxisAlignment: MainAxisAlignment.center,
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Enter Username and Password"))
+                    );
+                  }
+                },
+              ),
             ),
           ],
         ),
