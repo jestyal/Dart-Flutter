@@ -47,3 +47,5 @@ A new Flutter project.
 ### /lib/screens/week_17
 - [x] Maps (google_maps_flutter: Markers), FloatingActionButton
 
+### /lib/screens/components/registrationForm/
+- [x] Shared preferences
