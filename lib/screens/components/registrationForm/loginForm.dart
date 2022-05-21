@@ -16,6 +16,7 @@ class _LoginFormState extends State<LoginForm> {
   final formKey = GlobalKey<FormState>();
   String name = "";
   String password = "";
+  bool isLogin = false;
 
   @override
   void initState() {
@@ -23,6 +24,7 @@ class _LoginFormState extends State<LoginForm> {
 
     name = UserPreferences().getUsername() ?? '';
     password = UserPreferences().getPassword() ?? '';
+    isLogin = UserPreferences().getIsLogin() ?? false;
   }
 
   @override
@@ -33,7 +35,7 @@ class _LoginFormState extends State<LoginForm> {
         centerTitle: true,
         backgroundColor: const Color(0xFF00beac),
       ),
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFF00ceb9),
       body: Container(
         alignment: Alignment.center,
@@ -106,22 +108,23 @@ class _LoginFormState extends State<LoginForm> {
               padding: const EdgeInsets.only(bottom: 10),
               child: ElevatedButton.icon(
                 icon: const Icon(Icons.login),
-                label:  const Text('Login'),
+                label: const Text('Login'),
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xFF00beac),
                 ),
                 onPressed: () async {
                   await UserPreferences().setUsername(name);
                   await UserPreferences().setPassword(password);
-                  if(name.isNotEmpty && password.isNotEmpty) {
+                  await UserPreferences().setIsLogin(true);
+
+                  if (name.isNotEmpty && password.isNotEmpty) {
                     Navigator.pushNamed(
                       context,
                       "/registration-success",
                     );
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Enter Username and Password"))
-                    );
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(const SnackBar(content: Text("Enter Username and Password")));
                   }
                 },
               ),

@@ -14,6 +14,7 @@ class _RegistrationSuccessState extends State<RegistrationSuccess> {
   final routeName = "/registration-success";
   String userName = "";
   String userPass = "";
+  bool isLogin = false;
 
   @override
   void initState() {
@@ -21,6 +22,7 @@ class _RegistrationSuccessState extends State<RegistrationSuccess> {
 
     userName = UserPreferences().getUsername() ?? '';
     userPass = UserPreferences().getPassword() ?? '';
+    isLogin = UserPreferences().getIsLogin() ?? false;
   }
 
 
@@ -77,9 +79,13 @@ class _RegistrationSuccessState extends State<RegistrationSuccess> {
                 onPressed: () async {
                   await UserPreferences().deleteUsername();
                   await UserPreferences().deletePassword();
+                  // await UserPreferences().deleteIsLogin();
+                  await UserPreferences().setIsLogin(false);
+
                   setState(() {
                     userName = '';
                     userPass = '';
+                    isLogin = false;
                   });
                   Navigator.pushNamed(
                     context,

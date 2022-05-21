@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/components/registrationForm/userPreferences.dart';
 
 class RegistrationForm extends StatefulWidget {
   const RegistrationForm({Key? key}) : super(key: key);
@@ -10,11 +11,20 @@ class RegistrationForm extends StatefulWidget {
 
 class _RegistrationFormState extends State<RegistrationForm> {
   final routeName = "/registration-form";
+  String name = "";
+  String password = "";
+  String confirmPassword = "";
+  bool isLogin = false;
 
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
-  bool isNewUser = false;
+  @override
+  void initState() {
+    super.initState();
+
+    name = UserPreferences().getUsername() ?? '';
+    password = UserPreferences().getPassword() ?? '';
+    isLogin = UserPreferences().getIsLogin() ?? false;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +34,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
         centerTitle: true,
         backgroundColor: const Color(0xFFda5c36),
       ),
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xFFf5683d),
       body: Container(
         alignment: Alignment.center,
@@ -53,32 +63,37 @@ class _RegistrationFormState extends State<RegistrationForm> {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
-              child: TextField(
-                controller: _nameController,
+              child: TextFormField(
+                initialValue: name,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Username',
+                  labelText: 'Username *',
                 ),
+                onChanged: (name) => setState(() => this.name = name),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
-              child: TextField(
-                controller: _passwordController,
+              child: TextFormField(
+                initialValue: password,
+                obscureText: true,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Password',
+                  labelText: 'Password *',
                 ),
+                onChanged: (password) => setState(() => this.password = password),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
-              child: TextField(
-                controller: _confirmPasswordController,
+              child: TextFormField(
+                initialValue: confirmPassword,
+                obscureText: true,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Confirm Password',
+                  labelText: 'Confirm Password *',
                 ),
+                onChanged: (confirmPassword) => setState(() => this.confirmPassword = confirmPassword),
               ),
             ),
             Padding(
@@ -88,14 +103,21 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xFFda5c36),
                 ),
-                onPressed: () {
-                  // print(_nameController.text);
-                  // print(_passwordController.text);
+                onPressed: () async {
+                  await UserPreferences().setUsername(name);
+                  await UserPreferences().setPassword(password);
+                  await UserPreferences().setIsLogin(true);
 
-                  Navigator.pushNamed(
-                    context,
-                    "/registration-success",
-                  );
+                  if (name.isNotEmpty && password.isNotEmpty && confirmPassword.isNotEmpty && confirmPassword == password) {
+                    Navigator.pushNamed(
+                      context,
+                      "/registration-success",
+                    );
+                  }
+                  else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(const SnackBar(content: Text("Enter username and password\nPassword does not match the entered password")));
+                  }
                 },
               ),
             ),

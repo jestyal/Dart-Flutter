@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/components/registrationForm/loginForm.dart';
 import 'package:flutter_app/screens/components/registrationForm/registrationForm.dart';
+import 'package:flutter_app/screens/components/registrationForm/userPreferences.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -11,6 +12,16 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
+  final formKey = GlobalKey<FormState>();
+  bool isLogin = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    isLogin = UserPreferences().getIsLogin() ?? false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,17 +56,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 style: TextStyle(fontSize: 30),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 20),
-              child: Text(
-                "Do you have an account?",
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
+            // const Padding(
+            //   padding: EdgeInsets.only(bottom: 20),
+            //   child: Text(
+            //     "Do you have an account?",
+            //     style: TextStyle(fontSize: 20),
+            //   ),
+            // ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                // isLogin ?
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: ElevatedButton(
@@ -74,6 +86,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     },
                   ),
                 ),
+                // :
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: ElevatedButton(
@@ -92,6 +105,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     },
                   ),
                 ),
+
+
               ],
             ),
           ],

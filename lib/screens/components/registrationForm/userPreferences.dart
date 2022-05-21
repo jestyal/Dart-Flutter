@@ -5,6 +5,7 @@ class UserPreferences {
 
   final _keyUsername = 'username';
   final _keyPassword = 'password';
+  final _keyIsLogin = 'isLogin';
 
   Future init() async => _preferences = await SharedPreferences.getInstance();
 
@@ -24,4 +25,13 @@ class UserPreferences {
   String? getPassword() => _preferences?.getString(_keyPassword);
 
   Future<bool>? deletePassword() => _preferences?.remove(_keyPassword);
+
+
+  //isLogin
+  Future setIsLogin(isLogin) async =>
+      await _preferences?.setBool(_keyIsLogin, false);
+
+  bool? getIsLogin() => _preferences?.getBool(_keyIsLogin);
+
+  Future<bool>? deleteIsLogin() => _preferences?.remove(_keyIsLogin);
 }
