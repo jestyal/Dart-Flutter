@@ -25,8 +25,6 @@ class _RegistrationSuccessState extends State<RegistrationSuccess> {
     isLogin = UserPreferences().getIsLogin() ?? false;
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,14 +63,12 @@ class _RegistrationSuccessState extends State<RegistrationSuccess> {
                 alignment: Alignment.center,
                 child: Image(
                   image: AssetImage('assets/images/cat.jpg'),
-                )
-            ),
-
+                )),
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: ElevatedButton.icon(
                 icon: const Icon(Icons.logout),
-                label:  const Text('Logout'),
+                label: const Text('Logout'),
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xFF00beac),
                 ),
@@ -94,7 +90,6 @@ class _RegistrationSuccessState extends State<RegistrationSuccess> {
                 },
               ),
             ),
-
           ],
         ),
       ),
