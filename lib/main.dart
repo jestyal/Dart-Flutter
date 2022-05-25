@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/components/basket/basket.dart';
 
 import 'package:flutter_app/screens/components/catForm/catForm.dart';
 import 'package:flutter_app/screens/components/catForm/formSuccess.dart';
@@ -106,13 +107,15 @@ class _MyAppState extends State<MyApp> {
       // home: const MapPage(),
 
       // week 13
-      routes: {
-        '/': (context) => const RegistrationPage(),
-        '/login-form': (context) => const LoginForm(),
-        '/registration-form': (context) => const RegistrationForm(),
-        '/registration-success': (context) => const RegistrationSuccess(),
-      },
+      // routes: {
+      //   '/': (context) => const RegistrationPage(),
+      //   '/login-form': (context) => const LoginForm(),
+      //   '/registration-form': (context) => const RegistrationForm(),
+      //   '/registration-success': (context) => const RegistrationSuccess(),
+      // },
 
+      //week 14
+      home: const ProductListPage(),
     );
   }
 
