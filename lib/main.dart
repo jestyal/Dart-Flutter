@@ -115,7 +115,7 @@ class _MyAppState extends State<MyApp> {
       // },
 
       //week 14
-      home: const ProductListPage(),
+      home: const ShoppingPage(),
     );
   }
 

@@ -1,9 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/components/basket/ProductBloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Product {
-
   Product({
     required this.id,
     required this.name,
@@ -17,21 +17,21 @@ class Product {
   String img;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
-    id: json["id"],
-    name: json["name"],
-    price: json["price"],
-    img: json["img"],
-  );
+        id: json["id"],
+        name: json["name"],
+        price: json["price"],
+        img: json["img"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "price": price,
-    "img": img,
-  };
+        "id": id,
+        "name": name,
+        "price": price,
+        "img": img,
+      };
 
   static Future<List<Product>> loadData() async {
-    return Future.delayed(const Duration(seconds: 3), (){
+    return Future.delayed(const Duration(seconds: 3), () {
       return [
         Product(id: 0, name: 'Carrot', price: 50.0, img: 'assets/images/shopping/carrot.png'),
         Product(id: 1, name: 'Eggplant', price: 155.0, img: 'assets/images/shopping/eggplant.png'),
@@ -40,6 +40,18 @@ class Product {
         Product(id: 4, name: 'Pumpkin', price: 70.0, img: 'assets/images/shopping/pumpkin.png'),
       ];
     });
+  }
+}
+
+class ShoppingPage extends StatelessWidget {
+  const ShoppingPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<ProductBloc>(
+      create: (context) => ProductBloc(),
+      child: const ProductListPage(),
+    );
   }
 }
 
@@ -58,63 +70,74 @@ class ProductListPage extends StatelessWidget {
             position: BadgePosition.topEnd(top: 0, end: 3),
             animationDuration: const Duration(milliseconds: 300),
             animationType: BadgeAnimationType.slide,
-            badgeContent: Text(
-              "11",
-              style: TextStyle(color: Colors.white),
-            ),
-            child: IconButton(icon: Icon(Icons.shopping_cart), onPressed: () {}),
+            badgeContent: BlocBuilder<ProductBloc, ProductState>(
+                builder: (context, state) => state is LoadingState
+                    ? const CircularProgressIndicator()
+                    : state is SuccessState
+                        ? Text(
+                            '${state.count}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
+                          )
+                        : state is FailState
+                            ? Tooltip(message: state.fail.toString(), child: const Text("0"))
+                            : const Text("")),
+            child: IconButton(icon: const Icon(Icons.shopping_cart_outlined), onPressed: () {}),
           ),
         ],
       ),
+      backgroundColor: const Color(0xFFC1ABF3),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
           child: FutureBuilder<List<Product>>(
             future: Product.loadData(),
-            builder: (context, snap){
-              if(snap.connectionState == ConnectionState.done) {
+            builder: (context, snap) {
+              if (snap.connectionState == ConnectionState.done) {
                 return ListView.builder(
-                  itemCount: snap.data?.length,
+                    itemCount: snap.data?.length,
                     itemBuilder: (context, idx) => Card(
-                      child: ListTile(
-                        onTap: (){},
-                        title: SizedBox(
-                          height: 300,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                flex: 2,
-                                  child: Image(
-                                    image: AssetImage(snap.data![idx].img),
-                                  ),
-                              ),
-                              const SizedBox(height: 15,),
-                              Expanded(
-                                  child: Text(
-                                    snap.data![idx].name,
-                                    style: const TextStyle(
-                                      fontSize: 16,
+                          child: ListTile(
+                              onTap: () {},
+                              title: SizedBox(
+                                height: 100,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Image(
+                                        image: AssetImage(snap.data![idx].img),
+                                      ),
                                     ),
-                                  ),
-                              ),
-                              Expanded(
-                                  child: Row(
-                                    children: [
-                                      Text(
+                                    Expanded(
+                                      child: Text(
+                                        snap.data![idx].name,
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
                                         '${snap.data![idx].price} rub.',
                                         style: const TextStyle(
                                           fontSize: 18,
                                         ),
                                       ),
-                                    ],
-                                  )
-                              ),
-                            ],
-                          ),
-                        )
-                      ),
-                    )
-                );
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.shopping_cart_outlined),
+                                      onPressed: () =>
+                                          BlocProvider.of<ProductBloc>(context).add(AddToCart(item: snap.data![idx])),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ));
               }
               return const Center(
                 child: CircularProgressIndicator(),
@@ -126,10 +149,6 @@ class ProductListPage extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 // class BlocConsumerExample extends StatelessWidget {
 //   const BlocConsumerExample({Key? key}) : super(key: key);
@@ -218,45 +237,3 @@ class ProductListPage extends StatelessWidget {
 //   }
 // }
 //
-// /// Родительский Event. Создан специально для наследования от него дочерних Event`ов
-// class CounterEvent {}
-//
-// /// Event который View отправляет в Bloc когда мы увеличиваем счетчик. Нажимаем на кнопку "+"
-// class Increment extends CounterEvent {}
-//
-// /// Event который View отправляет в Bloc когда мы уменьшаем счетчик. Нажимаем на кнопку "-"
-// class Decrement extends CounterEvent {}
-//
-// /// Состояение которое Bloc передаёт во View
-// class CounterState {
-//   final int counterValue;
-//   final String msgText;
-//   final bool isShowMsg;
-//
-//   CounterState({required this.counterValue, this.msgText = '', this.isShowMsg = false});
-// }
-//
-// class CounterBloc extends Bloc<CounterEvent, CounterState> {
-//   CounterBloc() : super(CounterState(counterValue: 0)) {
-//     on<Increment>((CounterEvent event, Emitter<CounterState> emitter) {
-//       if (state.counterValue == 10) {
-//         emitter(CounterState(
-//           counterValue: state.counterValue + 1,
-//           isShowMsg: true,
-//           msgText: 'Счётчик равен ${state.counterValue + 1}',
-//         ));
-//       } else {
-//         emitter(CounterState(counterValue: state.counterValue + 1));
-//       }
-//     });
-//
-//     on<Decrement>((CounterEvent event, Emitter<CounterState> emitter) {
-//       if (state.counterValue == 10) {
-//         emitter(CounterState(
-//             counterValue: state.counterValue - 1, isShowMsg: true, msgText: 'Счётчик равен ${state.counterValue - 1}'));
-//       } else {
-//         emitter(CounterState(counterValue: state.counterValue - 1));
-//       }
-//     });
-//   }
-// }
