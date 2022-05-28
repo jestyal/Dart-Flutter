@@ -49,3 +49,6 @@ A new Flutter project.
 
 ### /lib/screens/components/registrationForm/
 - [x] Shared preferences
+
+### /lib/screens/components/shoppingCart/
+- [x] BLOC
