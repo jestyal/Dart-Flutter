@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/components/basket/basket.dart';
 
 import 'package:flutter_app/screens/components/catForm/catForm.dart';
 import 'package:flutter_app/screens/components/catForm/formSuccess.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_app/screens/components/registrationForm/registrationForm
 import 'package:flutter_app/screens/components/registrationForm/registrationPage.dart';
 import 'package:flutter_app/screens/components/registrationForm/registrationSuccess.dart';
 import 'package:flutter_app/screens/components/registrationForm/userPreferences.dart';
+import 'package:flutter_app/screens/components/shoppingCart/shoppingCartPage.dart';
 
 import 'package:flutter_app/screens/week2.dart';
 import 'package:flutter_app/screens/week3.dart';
