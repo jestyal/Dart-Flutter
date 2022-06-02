@@ -2,6 +2,8 @@
 	"title": "Loja de mel",
 
 	"winnieName": "Winnie the Pooh",
+    "rabbitName": "Rabbit",
+    "pigName": "Piglet",
 
 	"honey": "{amount} latas de {manufacturer}",
 

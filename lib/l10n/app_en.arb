@@ -2,6 +2,8 @@
     "title": "Honey shop",
 
     "winnieName": "Winnie the Pooh",
+    "rabbitName": "Rabbit",
+    "pigName": "Piglet",
 
     "honey": "{amount} Jars {manufacturer}",
     "@honey": {

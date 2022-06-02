@@ -2,6 +2,8 @@
     "title": "Медовая лавка",
 
     "winnieName": "Винни-Пух",
+    "rabbitName": "Кролик",
+    "pigName": "Пятачок",
 
     "honey": "{amount} банки {manufacturer}",
 
