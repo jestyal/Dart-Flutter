@@ -18,6 +18,45 @@ class _ShopCardState extends State<ShopCard> {
     return Scaffold(
       appBar: AppBar(
         title: Text(translation.title),
+        actions: [
+          Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextButton(
+                child: const Text('EN'),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.all(16.0),
+                  primary: Colors.white,
+                  backgroundColor: Colors.pinkAccent,
+                  textStyle: const TextStyle(fontSize: 20),
+                ),
+                onPressed: () {},
+              ),
+              const SizedBox(width: 10),
+              TextButton(
+                child: const Text('RU'),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.all(16.0),
+                  primary: Colors.white,
+                  backgroundColor: Colors.pinkAccent,
+                  textStyle: const TextStyle(fontSize: 20),
+                ),
+                onPressed: () {},
+              ),
+              const SizedBox(width: 10),
+              TextButton(
+                child: const Text('PT'),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.all(16.0),
+                  primary: Colors.white,
+                  backgroundColor: Colors.pinkAccent,
+                  textStyle: const TextStyle(fontSize: 20),
+                ),
+                onPressed: () {},
+              ),
+            ],
+          )
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -57,7 +96,7 @@ class _ShopCardState extends State<ShopCard> {
               width: 150,
               child: Image.network(img),
             ),
-            SizedBox(width: 12),
+            const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -65,7 +104,9 @@ class _ShopCardState extends State<ShopCard> {
                   name,
                   style: TextStyle(fontSize: 20),
                 ),
+                const SizedBox(width: 10),
                 Text('Jan 17, 2022'),
+                const SizedBox(width: 10),
                 Text('4 Jars - USD20'),
               ],
             ),
