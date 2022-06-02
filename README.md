@@ -52,3 +52,6 @@ A new Flutter project.
 
 ### /lib/screens/components/shoppingCart/
 - [x] BLOC
+
+### /lib/screens/week_15
+- [x] Localization
