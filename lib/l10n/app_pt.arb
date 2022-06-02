@@ -1,3 +1,13 @@
 {
-	"title": "Loja de mel"
+	"title": "Loja de mel",
+
+	"winnieName": "Winnie the Pooh",
+
+	"honey": "{amount} latas de {manufacturer}",
+
+	"guests": "{amount, plural, =0{Nenhum convidado} =1{{amount} convidado} =few{{amount} convidado} =other{{amount} convidados}}",
+
+	"itemTotal": "Total: {value}",
+
+	"born": "Nascido em {date}"
 }

@@ -1,3 +1,13 @@
 {
-	"title": "Медовая лавка"
+    "title": "Медовая лавка",
+
+    "winnieName": "Винни-Пух",
+
+    "honey": "{amount} банки {manufacturer}",
+
+    "guests": "{amount, plural, =0{Нет гостей} =1{{amount} гость} =few{{amount} гостя} =other{{amount} гостей}}",
+
+    "itemTotal": "Сумма: {value}",
+
+    "born": "Рожден {date}"
 }

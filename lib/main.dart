@@ -17,6 +17,7 @@ import 'package:flutter_app/screens/week3.dart';
 import 'package:flutter_app/screens/week4_flutter.dart';
 import 'package:flutter_app/screens/week4_dart.dart';
 import 'package:flutter_app/screens/week5_flutter.dart';
+import 'package:flutter_app/screens/week_15.dart';
 import 'package:flutter_app/screens/week_17.dart';
 import 'package:flutter_app/screens/week_6_flutter_1.dart';
 import 'package:flutter_app/screens/week_6_flutter_2.dart';
@@ -25,18 +26,21 @@ import 'package:flutter_app/screens/components/giphy/giphyPage.dart';
 import 'package:flutter_app/screens/week_8_dart.dart';
 import 'package:flutter_app/screens/week_9_dart.dart';
 import 'package:flutter_app/screens/week_9_flutter.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
-// void main() => runApp(const MyApp());
+
+void main() => runApp(const MyApp());
 
 //week_13 login/registration form (shared pref)
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await UserPreferences().init();
-
-  runApp(const MyApp());
-}
+// Future main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//
+//   await UserPreferences().init();
+//
+//   runApp(const MyApp());
+// }
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -57,6 +61,25 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+
+      //week 15
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.title,
+      // localizationsDelegates: const [
+      //   AppLocalizations.delegate,
+      //   GlobalMaterialLocalizations.delegate,
+      //   GlobalWidgetsLocalizations.delegate,
+      //   GlobalCupertinoLocalizations.delegate,
+      // ],
+      // supportedLocales: const [
+      //   Locale('en', ''),
+      //   Locale('ru', ''),
+      //   Locale('pt', ''),
+      // ],
+
+
+
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -115,7 +138,16 @@ class _MyAppState extends State<MyApp> {
       // },
 
       //week 14
-      home: const ShoppingPage(),
+      // home: const ShoppingPage(),
+
+      //week 15
+      initialRoute: '/',
+      routes: {
+        '/': (context) => ShopCard(),
+      },
+
+
+
     );
   }
 
