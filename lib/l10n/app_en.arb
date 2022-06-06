@@ -1,17 +1,18 @@
 {
+    "@@locale": "en",
+
     "title": "Honey shop",
 
     "winnieName": "Winnie the Pooh",
     "rabbitName": "Rabbit",
     "pigName": "Piglet",
 
-    "honey": "{amount} Jars {manufacturer}",
-    "@honey": {
-        "placeholders" : {
-            "amount": {},
-            "manufacturer": {}
-        }
-    },
+    "honey": "{amount, plural, =0{No Jars yet} =1{{amount} Jar} =other{{amount} Jars}}",
+	"@honey": {
+		"placeholders" : {
+			"amount": {}
+		}
+	},
 
     "guests": "{amount, plural, =0{No guest today} =1{{amount} guest} =other{{amount} guests}}",
     "@guests": {
@@ -30,7 +31,7 @@
         }
     },
 
-    "born": "Born {date}",
+    "born": "B-day {date}",
     "@born": {
         "placeholders": {
             "date": {

@@ -1,15 +1,17 @@
 {
+	"@@locale": "pt",
+
 	"title": "Loja de mel",
 
 	"winnieName": "Winnie the Pooh",
     "rabbitName": "Rabbit",
     "pigName": "Piglet",
 
-	"honey": "{amount} latas de {manufacturer}",
+	"honey": "{amount, plural, =0{Nenhum} =1{{amount} latas} =few{{amount} latas} =other{{amount} latas}}",
 
 	"guests": "{amount, plural, =0{Nenhum convidado} =1{{amount} convidado} =few{{amount} convidado} =other{{amount} convidados}}",
 
 	"itemTotal": "Total: {value}",
 
-	"born": "Nascido em {date}"
+	"born": "{date}"
 }

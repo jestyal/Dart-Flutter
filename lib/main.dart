@@ -47,6 +47,15 @@ class MyApp extends StatefulWidget {
 
   @override
   State<MyApp> createState() => _MyAppState();
+
+  //week 15
+  static void setLocale(BuildContext context, Locale locale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state!.setState(() {
+      state._locale = locale;
+    });
+  }
+
 }
 
 class _MyAppState extends State<MyApp> {
@@ -56,33 +65,18 @@ class _MyAppState extends State<MyApp> {
   String? selectedPlaceInfo;
   String? selectedPlaceImg;
 
+  // week 15
+  Locale? _locale;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-
-      //week 15
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      onGenerateTitle: (context) => AppLocalizations.of(context)!.title,
-      // localizationsDelegates: const [
-      //   AppLocalizations.delegate,
-      //   GlobalMaterialLocalizations.delegate,
-      //   GlobalWidgetsLocalizations.delegate,
-      //   GlobalCupertinoLocalizations.delegate,
-      // ],
-      // supportedLocales: const [
-      //   Locale('en', ''),
-      //   Locale('ru', ''),
-      //   Locale('pt', ''),
-      // ],
-
-
-
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+
       // home: const CongratulationWiget(), //week_2
       // home: const BalloonsWidget(), //week_3
       // home: const TextSizeWidget(), //week_4_flutter
@@ -141,9 +135,17 @@ class _MyAppState extends State<MyApp> {
       // home: const ShoppingPage(),
 
       //week 15
+      localeResolutionCallback: (deviceLocale, supportedLocales) {
+        _locale ??= deviceLocale;
+        return _locale;
+      },
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.title,
+      locale: _locale,
       initialRoute: '/',
       routes: {
-        '/': (context) => ShopCard(),
+        '/': (context) => const ShopCard(),
       },
 
 

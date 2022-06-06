@@ -1,11 +1,13 @@
 {
+    "@@locale": "ru",
+
     "title": "Медовая лавка",
 
     "winnieName": "Винни-Пух",
     "rabbitName": "Кролик",
     "pigName": "Пятачок",
 
-    "honey": "{amount} банки {manufacturer}",
+    "honey": "{amount, plural, =0{Ни одной} =1{{amount} банка} =few{{amount} банки} =other{{amount} банок}}",
 
     "guests": "{amount, plural, =0{Нет гостей} =1{{amount} гость} =few{{amount} гостя} =other{{amount} гостей}}",
 
