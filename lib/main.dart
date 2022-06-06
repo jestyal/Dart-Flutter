@@ -49,13 +49,7 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 
   //week 15
-  static void setLocale(BuildContext context, Locale locale) {
-    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
-    state!.setState(() {
-      state._locale = locale;
-    });
-  }
-
+  static _MyAppState? of(BuildContext context) => context.findAncestorStateOfType<_MyAppState>();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -67,6 +61,12 @@ class _MyAppState extends State<MyApp> {
 
   // week 15
   Locale? _locale;
+
+  void setLocale(Locale value) {
+    setState(() {
+      _locale = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

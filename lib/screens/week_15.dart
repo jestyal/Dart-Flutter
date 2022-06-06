@@ -34,9 +34,7 @@ class _ShopCardState extends State<ShopCard> {
                   backgroundColor: (currentLocale=="en") ? Colors.green : Colors.pinkAccent,
                   textStyle: const TextStyle(fontSize: 20),
                 ),
-                onPressed: (){
-                  MyApp.setLocale(context, const Locale("en"));
-                },
+                onPressed: () => MyApp.of(context)?.setLocale(const Locale.fromSubtags(languageCode: 'en')),
               ),
               const SizedBox(width: 10),
               TextButton(
@@ -47,9 +45,7 @@ class _ShopCardState extends State<ShopCard> {
                   backgroundColor: (currentLocale=="ru") ? Colors.green : Colors.pinkAccent,
                   textStyle: const TextStyle(fontSize: 20),
                 ),
-                onPressed: (){
-                  MyApp.setLocale(context, const Locale("ru"));
-                },
+                onPressed: () => MyApp.of(context)?.setLocale(const Locale.fromSubtags(languageCode: 'ru')),
               ),
               const SizedBox(width: 10),
               TextButton(
@@ -60,9 +56,7 @@ class _ShopCardState extends State<ShopCard> {
                   backgroundColor: (currentLocale=="pt") ? Colors.green : Colors.pinkAccent,
                   textStyle: const TextStyle(fontSize: 20),
                 ),
-                onPressed: (){
-                  MyApp.setLocale(context, const Locale("pt"));
-                },
+                onPressed: () => MyApp.of(context)?.setLocale(const Locale.fromSubtags(languageCode: 'pt')),
               ),
             ],
           )
