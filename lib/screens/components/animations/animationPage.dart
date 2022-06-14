@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/components/animations/sections/builder_section.dart';
+import 'package:flutter_app/screens/components/animations/sections/container_section.dart';
 import 'package:flutter_app/screens/components/animations/sections/manual_section.dart';
 import 'package:flutter_app/screens/components/animations/sections/simple_section.dart';
 
@@ -17,8 +19,8 @@ class AnimationPage extends StatelessWidget {
             child: ListView(
               children: [
                 ManualSection(imageUrls: characterImages['winnie']),
-                SimpleSection(imageUrls: characterImages['piglet']),
-                SimpleSection(imageUrls: characterImages['rabbit']),
+                BuilderSection(imageUrls: characterImages['piglet']),
+                ContainerSection(imageUrls: characterImages['rabbit']),
                 SimpleSection(imageUrls: characterImages['eeyore']),
               ],
             ),
