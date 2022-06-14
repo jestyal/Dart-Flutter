@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'dart:math' as math;
 import 'dropdown.dart';
 
 class AnimationScreen extends StatelessWidget {
@@ -7,6 +7,7 @@ class AnimationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Animations'),
@@ -17,22 +18,30 @@ class AnimationScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: ListView(
             children: [
-              Container(
-                padding: const EdgeInsets.all(8), // Border width
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                ),
-                child: ClipOval(
-                  child: SizedBox.fromSize(
-                    size: const Size.fromRadius(100), // Image radius
-                    child: const FadeInImage(
-                      placeholder: AssetImage('assets/images/loadingicon.gif'),
-                      image: AssetImage('assets/images/places/place6.jpg'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
+              TweenAnimationBuilder(
+                  tween: Tween<double>(begin: 0, end: 2 * math.pi),
+                  duration: const Duration(seconds: 3),
+                  builder: (_,double angle, __) {
+                    return Transform.rotate(
+                        angle: angle,
+                      child: Container(
+                        padding: const EdgeInsets.all(8), // Border width
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: ClipOval(
+                          child: SizedBox.fromSize(
+                            size: const Size.fromRadius(150), // Image radius
+                            child: const FadeInImage(
+                              placeholder: AssetImage('assets/images/loadingicon.gif'),
+                              image: AssetImage('assets/images/places/place6.jpg'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
               const SizedBox(
                 height: 20,
               ),
