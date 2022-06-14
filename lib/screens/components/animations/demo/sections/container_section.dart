@@ -54,6 +54,16 @@ class _ContainerSectionState extends State<ContainerSection> {
               curve: Curves.easeIn,
               child: Image.network(widget.imageUrls![0]),
             ),
+            // Hero(
+            //   tag: 'rabbit hero',
+            //   child: AnimatedContainer(
+            //     height: show ? 150 : 0,
+            //     width: 150,
+            //     duration: const Duration(milliseconds: 500),
+            //     curve: Curves.easeIn,
+            //     child: Image.network(widget.imageUrls![0]),
+            //   ),
+            // ),
           ],
         ),
       ),

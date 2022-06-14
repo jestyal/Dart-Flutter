@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/components/animations/animationPage.dart';
+import 'package:flutter_app/screens/components/animations/animationScreen.dart';
+import 'package:flutter_app/screens/components/animations/demo/animationPage.dart';
 
 import 'package:flutter_app/screens/components/catForm/catForm.dart';
 import 'package:flutter_app/screens/components/catForm/formSuccess.dart';
@@ -150,7 +151,7 @@ class _MyAppState extends State<MyApp> {
       // },
 
       //week 16
-      home: const AnimationPage(),
+      home: const AnimationScreen(),
 
 
     );

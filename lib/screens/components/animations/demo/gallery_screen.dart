@@ -22,10 +22,13 @@ class GalleryScreen extends StatelessWidget {
             children: List.generate(
               imageUrls!.length,
                   (index) => Card(
-                child: SizedBox(
-                  height: 200,
-                  child: Image.network(imageUrls![index]),
-                ),
+                    child: SizedBox(
+                      height: 200,
+                      child: FadeInImage(
+                        placeholder: const AssetImage('images/placeholder.jpg'),
+                        image: NetworkImage(imageUrls![index]),
+                      ),
+                    ),
               ),
             ),
           ),

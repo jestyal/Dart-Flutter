@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/components/animations/sections/builder_section.dart';
-import 'package:flutter_app/screens/components/animations/sections/container_section.dart';
-import 'package:flutter_app/screens/components/animations/sections/manual_section.dart';
-import 'package:flutter_app/screens/components/animations/sections/simple_section.dart';
+import 'package:flutter_app/screens/components/animations/demo/sections/builder_section.dart';
+import 'package:flutter_app/screens/components/animations/demo/sections/container_section.dart';
+import 'package:flutter_app/screens/components/animations/demo/sections/manual_section.dart';
+import 'package:flutter_app/screens/components/animations/demo/sections/simple_section.dart';
 
 class AnimationPage extends StatelessWidget {
   const AnimationPage({Key? key}) : super(key: key);
