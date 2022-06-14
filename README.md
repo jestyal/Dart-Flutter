@@ -55,3 +55,6 @@ A new Flutter project.
 
 ### /lib/screens/week_15
 - [x] Localization
+
+### /lib/screens/components/animations
+- [x] Animations
