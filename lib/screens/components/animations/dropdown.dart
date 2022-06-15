@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class DropdownWidget extends StatefulWidget {
   const DropdownWidget({Key? key}) : super(key: key);
@@ -8,28 +9,18 @@ class DropdownWidget extends StatefulWidget {
 }
 
 class _DropdownWidgetState extends State<DropdownWidget> with SingleTickerProviderStateMixin {
-  String dropdownValue = 'One';
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   bool show = false;
 
-  late AnimationController _controller;
-  late Animation<double> _heightAnimation;
-
   @override
   void initState() {
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-
-    _heightAnimation = Tween<double>(begin: 0, end: 150).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.ease),
-    );
-
-    _heightAnimation.addListener(() {
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _animation = Tween<double>(begin: 0, end: 0.5).animate(_controller);
+    _animation.addListener(() {
       setState(() {});
     });
-
     super.initState();
   }
 
@@ -41,34 +32,59 @@ class _DropdownWidgetState extends State<DropdownWidget> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: show ? const Icon(Icons.arrow_upward) : const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String? newValue) {
-        setState(() {
-          dropdownValue = newValue!;
-          if (show == false) {
-            _controller.forward();
-            show = true;
-          } else {
-            _controller.reverse();
-            show = false;
-          }
-        });
-      },
-      items: <String>['One', 'Two', 'Free', 'Four']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+          decoration: BoxDecoration(
+            border: Border.all(color: const Color(0xFF6500ca)),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Saint-Petersburg',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              RotationTransition(
+                turns: _animation,
+                child: TextButton(
+                  onPressed: () {
+                    if (show == false) {
+                      _controller.forward(from: 0);
+                      show = true;
+                    } else {
+                      _controller.reverse(from: 1);
+                      show = false;
+                    }
+                  },
+                  child: const Icon(Icons.arrow_downward, color: Color(0xFF6500ca)),
+                ),
+              )
+            ],
+          ),
+        ),
+        const SizedBox(height: 10),
+        AnimatedOpacity(
+          opacity: show ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 500),
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xFF6500ca)),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Text(
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
 import 'dropdown.dart';
 
 class AnimationScreen extends StatelessWidget {
@@ -7,7 +8,6 @@ class AnimationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Animations'),
@@ -21,9 +21,9 @@ class AnimationScreen extends StatelessWidget {
               TweenAnimationBuilder(
                   tween: Tween<double>(begin: 0, end: 2 * math.pi),
                   duration: const Duration(seconds: 3),
-                  builder: (_,double angle, __) {
+                  builder: (_, double angle, __) {
                     return Transform.rotate(
-                        angle: angle,
+                      angle: angle,
                       child: Container(
                         padding: const EdgeInsets.all(8), // Border width
                         decoration: const BoxDecoration(
@@ -42,10 +42,9 @@ class AnimationScreen extends StatelessWidget {
                       ),
                     );
                   }),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               const DropdownWidget(),
+              const SizedBox(height: 20),
             ],
           ),
         ),
