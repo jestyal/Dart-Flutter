@@ -11,16 +11,24 @@ class DropdownWidget extends StatefulWidget {
 class _DropdownWidgetState extends State<DropdownWidget> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  late Animation<double> _animationDropDown;
 
   bool show = false;
 
   @override
   void initState() {
     _controller = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+
     _animation = Tween<double>(begin: 0, end: 0.5).animate(_controller);
     _animation.addListener(() {
       setState(() {});
     });
+
+    _animationDropDown = CurvedAnimation(parent: _controller,curve: Curves.fastOutSlowIn);
+    _animationDropDown.addListener(() {
+      setState(() {});
+    });
+
     super.initState();
   }
 
@@ -69,9 +77,10 @@ class _DropdownWidgetState extends State<DropdownWidget> with SingleTickerProvid
           ),
         ),
         const SizedBox(height: 10),
-        AnimatedOpacity(
-          opacity: show ? 1.0 : 0.0,
-          duration: const Duration(milliseconds: 500),
+        SizeTransition(
+          sizeFactor: _animationDropDown,
+          axis: Axis.horizontal,
+          axisAlignment: -1,
           child: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
