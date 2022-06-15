@@ -76,7 +76,7 @@ class _DropdownWidgetState extends State<DropdownWidget> with SingleTickerProvid
         const SizedBox(height: 10),
         SizeTransition(
           sizeFactor: _animationDropDown,
-          axis: Axis.horizontal,
+          axis: Axis.vertical,
           axisAlignment: -1,
           child: Container(
             padding: const EdgeInsets.all(8),
