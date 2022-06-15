@@ -17,15 +17,12 @@ class _DropdownWidgetState extends State<DropdownWidget> with SingleTickerProvid
 
   @override
   void initState() {
-    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
 
     _animation = Tween<double>(begin: 0, end: 0.5).animate(_controller);
-    _animation.addListener(() {
-      setState(() {});
-    });
-
     _animationDropDown = CurvedAnimation(parent: _controller,curve: Curves.fastOutSlowIn);
-    _animationDropDown.addListener(() {
+
+    _controller.addListener(() {
       setState(() {});
     });
 

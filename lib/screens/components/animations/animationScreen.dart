@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'buttonBlock.dart';
 import 'dropdown.dart';
 
 class AnimationScreen extends StatelessWidget {
@@ -45,6 +46,7 @@ class AnimationScreen extends StatelessWidget {
               const SizedBox(height: 20),
               const DropdownWidget(),
               const SizedBox(height: 20),
+              const ButtonWidget(),
             ],
           ),
         ),
