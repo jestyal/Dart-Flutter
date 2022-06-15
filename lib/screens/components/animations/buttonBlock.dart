@@ -87,7 +87,7 @@ class ImageDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(backgroundColor: const Color(0xFF6500ca)),
       body: const Center(
         child: SizedBox(
           height: 300,
